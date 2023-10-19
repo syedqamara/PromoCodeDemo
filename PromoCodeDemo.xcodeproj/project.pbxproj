@@ -40,7 +40,6 @@
 		184630252AE0D43200DC65FC /* FeatureUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184630242AE0D43200DC65FC /* FeatureUnlockView.swift */; };
 		184630272AE0D52F00DC65FC /* FeatureListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184630262AE0D52F00DC65FC /* FeatureListViewModel.swift */; };
 		184630292AE0DD6400DC65FC /* Features.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184630282AE0DD6400DC65FC /* Features.swift */; };
-		1846302B2AE0DE4E00DC65FC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1846302A2AE0DE4E00DC65FC /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,7 +95,6 @@
 		184630242AE0D43200DC65FC /* FeatureUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureUnlockView.swift; sourceTree = "<group>"; };
 		184630262AE0D52F00DC65FC /* FeatureListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureListViewModel.swift; sourceTree = "<group>"; };
 		184630282AE0DD6400DC65FC /* Features.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features.swift; sourceTree = "<group>"; };
-		1846302A2AE0DE4E00DC65FC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +150,6 @@
 			children = (
 				18462FAA2AE0543D00DC65FC /* PromoCodeDemoApp.swift */,
 				18462FAC2AE0543D00DC65FC /* ContentView.swift */,
-				1846302A2AE0DE4E00DC65FC /* README.md */,
 				184630182AE08D8400DC65FC /* TestStoreKit.storekit */,
 				1846300E2AE060C700DC65FC /* Helpers */,
 				184630012AE05BE600DC65FC /* Model */,
@@ -416,7 +413,6 @@
 			files = (
 				184630192AE08D8400DC65FC /* TestStoreKit.storekit in Resources */,
 				18462FB22AE0543F00DC65FC /* Preview Assets.xcassets in Resources */,
-				1846302B2AE0DE4E00DC65FC /* README.md in Resources */,
 				18462FAF2AE0543F00DC65FC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
