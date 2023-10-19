@@ -1,171 +1,234 @@
-# PremiumType
+# Protocol Documentation
 
-## **Introduction:**
-The `PremiumType` enum represents different premium levels available in the application, including "free," "basic," "golden," and "platinum." It provides methods for initializing from `SubscriptionProducts`, mapping to `SubscriptionProducts`, and obtaining a user-friendly text representation.
+This documentation outlines a set of Swift protocols that serve as a foundation for building flexible and modular components within applications. These protocols address various aspects of structuring views, view models, and interactions.
 
-## **Usage:**
-- Create instances of `PremiumType` to represent the user's premium status.
-- Utilize the provided mapping functions to translate between `PremiumType` and `SubscriptionProducts`.
-- Retrieve the user-friendly text representation of the premium type using the `text` property.
+## Introduction
 
-## **Testing Example:**
+The protocols are categorized into three sections:
+
+1. **Basic Protocols:**
+    - DataSourcing
+    - ViewModeling
+    - ObservableViewModel
+    - Viewing
+    - AsyncThrowableViewModeing
+    - ViewingFactory
+
+2. **Product-Related Protocols:**
+    - PurchaseManaging
+    - ProductListViewing and ProductListViewModeling
+    - ProductDetailViewing and ProductDetailViewModeling
+
+3. **Feature List Protocols:**
+    - Feature
+    - FeatureListViewing and FeatureListViewModeling
+
+The purpose of these protocols is to create a modular and maintainable architecture for building applications. Below, you'll find example implementations, usage scenarios, and test cases for each protocol.
+
+## Basic Protocols
+
+### DataSourcing
+
+The `DataSourcing` protocol indicates a data source for components in an application.
+
 ```swift
-// Example Usage
-let userPremium = PremiumType.basic
-let correspondingSubscription = userPremium.subscription
-let premiumText = userPremium.text
-
-// Testing
-assert(correspondingSubscription == SubscriptionProducts.weekly)
-assert(premiumText == "Basic Premium")
+public protocol DataSourcing {}
 ```
 
----
+### ViewModeling
 
-# SubscriptionProducts
+The `ViewModeling` protocol represents a basic view model.
 
-## **Introduction:**
-The `SubscriptionProducts` enum represents different subscription products available for purchase, including "weekly," "monthly," and "yearly." It provides methods for initializing from `PremiumType` and mapping to `PremiumType`.
-
-## **Usage:**
-- Create instances of `SubscriptionProducts` to represent available subscription options.
-- Utilize the provided mapping functions to translate between `SubscriptionProducts` and `PremiumType`.
-
-## **Testing Example:**
 ```swift
-// Example Usage
-let selectedSubscription = SubscriptionProducts.monthly
-let correspondingPremium = selectedSubscription.premium
-
-// Testing
-assert(correspondingPremium == PremiumType.golden)
+public protocol ViewModeling { }
 ```
 
----
+### ObservableViewModel
 
-# DataSourcing
+The `ObservableViewModel` protocol extends `ViewModeling` and allows view models to be observed for changes in their properties. It conforms to the `ObservableObject` protocol.
 
-## **Introduction:**
-The `DataSourcing` protocol is an interface for components responsible for data sourcing. It does not define any specific methods but serves as a marker protocol for data-related components.
-
-## **Usage:**
-- Conform to the `DataSourcing` protocol in your data sourcing components.
-
-## **Testing Example:**
 ```swift
-// Example Usage
-struct MyDataSource: DataSourcing {
-    // Implement data sourcing methods
+public protocol ObservableViewModel: ViewModeling, ObservableObject { }
+```
+
+### Viewing
+
+The `Viewing` protocol defines views with associated view models. It includes an associated type `VM` representing the view model required by the view.
+
+```swift
+public protocol Viewing: View {
+    associatedtype VM: ViewModeling
+
+    init(viewModel: VM)
 }
-
-// Testing
-let dataSource = MyDataSource()
-// Test data sourcing functionality
 ```
 
----
+### AsyncThrowableViewModeing
 
-# ViewModeling
+The `AsyncThrowableViewModeing` protocol extends `ObservableViewModel` and is designed for asynchronous operations that can throw errors. It includes properties for error handling and loading indicators.
 
-## **Introduction:**
-The `ViewModeling` protocol is an interface for view model components. It does not define any specific methods but serves as a marker protocol for view model components.
-
-## **Usage:**
-- Conform to the `ViewModeling` protocol in your view model components.
-
-## **Testing Example:**
 ```swift
-// Example Usage
-struct MyViewModel: ViewModeling {
-    // Implement view model functionality
-}
+public protocol AsyncThrowableViewModeing: ObservableViewModel {
+    associatedtype ErrorType: Error
 
-// Testing
-let viewModel = MyViewModel()
-// Test view model functionality
+    var error: ErrorType? { get set }
+    var isLoading: Bool { get set }
+
+    init()
+}
 ```
 
----
+### ViewingFactory
 
-# ObservableViewModel
+The `ViewingFactory` protocol represents a factory for dynamically creating views based on input. It provides a generic method `makeView` to instantiate a view conforming to the `Viewing` protocol.
 
-## **Introduction:**
-The `ObservableViewModel` protocol is an interface for view models that need to be observable. It extends the `ViewModeling` protocol and requires conformance to the `ObservableObject` protocol.
-
-## **Usage:**
-- Conform to the `ObservableViewModel` protocol when creating view models that need to be observed for changes.
-
-## **Testing Example:**
 ```swift
-// Example Usage
-class MyObservableViewModel: ObservableViewModel {
-    @Published var data: String = "Initial Data"
+public protocol ViewingFactory {
+    func makeView<I>(input: I) -> some Viewing
 }
-
-// Testing
-let observableViewModel = MyObservableViewModel()
-// Observe and test changes to data
 ```
 
----
+## Product-Related Protocols
 
-# Viewing
+### Purchase Managing
 
-## **Introduction:**
-The `Viewing` protocol is an interface for views with associated view models. It requires conformance to the `View` protocol and defines an associated type `VM` for the view model.
+The `PurchaseManaging` protocol defines the requirements for a purchase manager, allowing users to interact with premium subscriptions and in-app purchases.
 
-## **Usage:**
-- Conform to the `Viewing` protocol when creating views that require an associated view model.
-- Implement the required initializer to pass the view model.
-
-## **Testing Example:**
 ```swift
-// Example Usage
-struct MyView: Viewing {
-    typealias VM = MyViewModel
+// Example Implementation Code
+public protocol PurchaseManaging: ObservableViewModel {
+    var premium: PremiumType { get }
+    var availableProducts: [SubscriptionProducts] { get }
 
-    init(viewModel: MyViewModel) {
-        // Initialize the view with the provided view model
-    }
+    func products() async throws -> [Product]
+    func restorePurchases() async throws
+    func purchase(product: Product) async throws
+    func applyPromo(product: Product) async throws
 }
-
-// Testing
-let viewModel = MyViewModel()
-let myView = MyView(viewModel: viewModel)
-// Verify that the view is correctly associated with the view model
 ```
 
----
+#### Example Usage
 
-# AsyncThrowableViewModeing
-
-## **Introduction:**
-The `AsyncThrowableViewModeing` protocol is an interface for asynchronous, throwable view models. It extends the `ObservableViewModel` protocol and adds properties for handling errors and loading state.
-
-## **Usage:**
-- Conform to the `AsyncThrowableViewModeing` protocol when creating view models that handle asynchronous operations with possible errors.
-
-## **Testing Example:**
 ```swift
-// Example Usage
-class MyAsyncViewModel: AsyncThrowableViewModeing {
-    @Published var data: String = "Initial Data"
-    @Published var error: MyError? = nil
-    @Published var isLoading: Bool = false
-}
-
-// Testing
-let asyncViewModel = MyAsyncViewModel()
-// Test asynchronous operations and error handling
+let purchaseManager = PurchaseManager()
+let purchaseView = PurchaseView(viewModel: purchaseManager)
 ```
 
----
+#### Example Test Cases
 
-# ViewingFactory
+```swift
+func testPurchaseManager() {
+    let purchaseManager = PurchaseManager()
+    // Test various purchase and error scenarios.
+}
+```
 
-## **Introduction:**
-The `ViewingFactory` protocol is an interface for creating views dynamically. It defines a single method for creating views based on input parameters.
+### Product List Protocols
 
-## **Usage:**
-- Conform to the `ViewingFactory` protocol when you need to create views dynamically.
-- Implement the `makeView` method to provide the logic
+The `ProductListViewing` and `ProductListViewModeling` protocols define the requirements for a view and its view model to display a list of products.
+
+```swift
+// Example Implementation Code
+public protocol ProductListViewing: Viewing {}
+public protocol ProductListViewModeling: ObservableViewModel {
+    var products: [ProductUIModel] { get }
+    func fetchProducts()
+}
+```
+
+#### Example Usage
+
+```swift
+let productListViewModel = ProductListViewModel()
+let productListView = ProductListView(viewModel: productListViewModel)
+```
+
+#### Example Test Cases
+
+```swift
+func testProductListViewModel() {
+    let productListViewModel = ProductListViewModel()
+    // Test product list population and data retrieval.
+}
+```
+
+### Product Detail Protocols
+
+The `ProductDetailViewing` and `ProductDetailViewModeling` protocols define the requirements for a view and its view model to display details of a specific product.
+
+```swift
+// Example Implementation Code
+public protocol ProductDetailViewing: Viewing {}
+public protocol ProductDetailViewModeling: ObservableViewModel {
+    var product: ProductUIModel { get }
+    func purchase()
+    func applyPromo()
+}
+```
+
+#### Example Usage
+
+```swift
+let productDetailViewModel = ProductDetailViewModel(product: selectedProduct)
+let productDetailView = ProductDetailView(viewModel: productDetailViewModel)
+```
+
+#### Example Test Cases
+
+```swift
+func testProductDetailViewModel() {
+    let productDetailViewModel = ProductDetailViewModel(product: selectedProduct)
+    // Test displaying product details, initiating a purchase, and applying a promo code.
+}
+```
+
+## Feature List Protocols
+
+### Feature
+
+The `Feature` protocol represents a feature within the application and defines its name and required premium types.
+
+```swift
+// Example Implementation Code
+public protocol Feature {
+    var name: String { get }
+    var requiredPremiums: [PremiumType] { get }
+}
+```
+
+### Feature List Protocols
+
+The `FeatureListViewing` and `FeatureListViewModeling` protocols define the requirements for a view and its view model to display a list of app features.
+
+```swift
+// Example Implementation Code
+public protocol FeatureListViewing: Viewing {}
+public protocol FeatureListViewModeling: ObservableViewModel {
+    associatedtype AsyncThrow: AsyncThrowableViewModeing
+    var asyncThrowVM: AsyncThrow { get set }
+    var premium: PremiumType { get }
+    var features: [Feature] { get }
+    
+    func featureImage(feature: Feature) -> Assets.Image
+    func featurePremium(feature: Feature) -> String
+    func products(for feature: Feature) -> [ProductUIModel]
+}
+```
+
+#### Example Usage
+
+```swift
+let featureListViewModel = FeatureListViewModel()
+let featureListView = FeatureListView(viewModel: featureListViewModel)
+```
+
+#### Example Test Cases
+
+```swift
+func testFeatureListViewModel() {
+    let featureListViewModel = FeatureListViewModel()
+    // Test displaying features, images, premium status, and associated products.
+}
+```
+
+These code comments provide an overview of each protocol's purpose,
