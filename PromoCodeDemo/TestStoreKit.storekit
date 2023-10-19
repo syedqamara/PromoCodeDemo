@@ -1,0 +1,152 @@
+{
+  "identifier" : "95F905D5",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "48",
+      "familyShareable" : false,
+      "internalID" : "E865CA98",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.product_yearly",
+      "referenceName" : "Platinum",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "4",
+      "familyShareable" : false,
+      "internalID" : "5AC842D4",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "product_monthlys",
+      "referenceName" : "Golden",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "F7991220",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "product_weeklys",
+      "referenceName" : "Basic",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "D1B25862",
+      "localizations" : [
+
+      ],
+      "name" : "subscription",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+            {
+              "internalID" : "C49F2CE0",
+              "offerID" : "PUFree",
+              "paymentMode" : "free",
+              "referenceName" : "Promotional Unlock",
+              "subscriptionPeriod" : "P3D"
+            }
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "48",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "A759775C",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "",
+              "displayName" : "",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "product_yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Platinum Subscription",
+          "subscriptionGroupID" : "D1B25862",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "4",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "AD2CD7F2",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "",
+              "displayName" : "",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "product_monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Golden Subscription",
+          "subscriptionGroupID" : "D1B25862",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "0.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "50482B09",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "",
+              "displayName" : "",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "product_weekly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Basic Subscription",
+          "subscriptionGroupID" : "D1B25862",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}
