@@ -65,14 +65,49 @@
           "adHocOffers" : [
             {
               "internalID" : "C49F2CE0",
-              "offerID" : "PUFree",
+              "offerID" : "PPUFree",
               "paymentMode" : "free",
-              "referenceName" : "Promotional Unlock",
+              "referenceName" : "Platinum Promotional Unlock",
               "subscriptionPeriod" : "P3D"
             }
           ],
           "codeOffers" : [
-
+            {
+              "eligibility" : [
+                "new",
+                "existing",
+                "expired"
+              ],
+              "internalID" : "C31E507A",
+              "isStackable" : true,
+              "paymentMode" : "free",
+              "referenceName" : "PlatinumOffer",
+              "subscriptionPeriod" : "P3D"
+            },
+            {
+              "eligibility" : [
+                "existing",
+                "expired",
+                "new"
+              ],
+              "internalID" : "CF5BC3F2",
+              "isStackable" : true,
+              "paymentMode" : "free",
+              "referenceName" : "GoldenOffer",
+              "subscriptionPeriod" : "P3D"
+            },
+            {
+              "eligibility" : [
+                "expired",
+                "new",
+                "existing"
+              ],
+              "internalID" : "638F7A2A",
+              "isStackable" : true,
+              "paymentMode" : "free",
+              "referenceName" : "BasicOffer",
+              "subscriptionPeriod" : "P3D"
+            }
           ],
           "displayPrice" : "48",
           "familyShareable" : false,
@@ -94,7 +129,13 @@
         },
         {
           "adHocOffers" : [
-
+            {
+              "internalID" : "B64737C0",
+              "offerID" : "GPUFree",
+              "paymentMode" : "free",
+              "referenceName" : "Golden Promotional Unlock",
+              "subscriptionPeriod" : "P3D"
+            }
           ],
           "codeOffers" : [
 
@@ -119,7 +160,13 @@
         },
         {
           "adHocOffers" : [
-
+            {
+              "internalID" : "EE7F9A78",
+              "offerID" : "BPUFree",
+              "paymentMode" : "free",
+              "referenceName" : "Basic Promotional Unlock",
+              "subscriptionPeriod" : "P3D"
+            }
           ],
           "codeOffers" : [
 

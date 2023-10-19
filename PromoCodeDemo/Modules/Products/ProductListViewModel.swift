@@ -20,7 +20,7 @@ public class ProductListViewModel: ProductListViewModeling {
     init(products: [ProductUIModel]) {
         self.products = products
     }
-    func fetchProducts() {
+    public func fetchProducts() {
         asyncThrowVM.isLoading.on()
         Task { [weak self] in
             guard let welf = self else { return }

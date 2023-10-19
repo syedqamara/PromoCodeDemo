@@ -77,7 +77,7 @@ public class FeatureListViewModel: FeatureListViewModeling {
             }
         }
     }
-    func products(for feature: Feature) -> [ProductUIModel] {
+    public func products(for feature: Feature) -> [ProductUIModel] {
         let ids = feature.requiredPremiums.map { $0.subscription }.compactMap { $0 }
         let products = ids.flatMap { id in
             let filteredProducts = self.products.filter { prod in
@@ -90,13 +90,13 @@ public class FeatureListViewModel: FeatureListViewModeling {
         }
         return products
     }
-    func featureImage(feature: Feature) -> Assets.Image {
+    public func featureImage(feature: Feature) -> Assets.Image {
         if feature.allowed(for: premium) {
             return .unlock
         }
         return .lock
     }
-    func featurePremium(feature: Feature) -> String {
+    public func featurePremium(feature: Feature) -> String {
         if feature.requiredPremiums.contains(.free) {
             return "Free"
         }

@@ -36,7 +36,7 @@ struct ProductDetailView<T: ProductDetailViewModeling>: ProductDetailViewing {
             
             promoCodeView()
                 .onTapGesture {
-                    viewModel.applyPromo(promo: promotText)
+                    viewModel.applyPromo()
                 }
             
             purhaseButton()
@@ -85,27 +85,28 @@ struct ProductDetailView<T: ProductDetailViewModeling>: ProductDetailViewing {
     @ViewBuilder
     func promoCodeView() -> some View {
         Section {
-            HStack {
-                TextField(text: $promotText) {
-                    Text("Enter Promo...")
-                        .font(.headline)
-                        .foregroundColor(promoColor)
-                        .padding()
-                        .background(Color.gray.opacity(0.4))
-                        .cornerRadius(10)
-                }
-                .focused($promoIsFocus)
-                .frame(height: 40)
-                .padding([.horizontal], 10)
-                .roundedRectangle(cornerRadius: 5, lineWidth: 2, strokeColor: promoColor, fillColor: promoColor.opacity(0.3))
-                Spacer()
-                Text("Apply Promo")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding(10)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-            }
+            Text("Apply Promo")
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding(10)
+                .background(Color.blue)
+                .cornerRadius(10)
+//            HStack {
+//                TextField(text: $promotText) {
+//                    Text("Enter Promo...")
+//                        .font(.headline)
+//                        .foregroundColor(promoColor)
+//                        .padding()
+//                        .background(Color.gray.opacity(0.4))
+//                        .cornerRadius(10)
+//                }
+//                .focused($promoIsFocus)
+//                .frame(height: 40)
+//                .padding([.horizontal], 10)
+//                .roundedRectangle(cornerRadius: 5, lineWidth: 2, strokeColor: promoColor, fillColor: promoColor.opacity(0.3))
+//                Spacer()
+                
+//            }
         }
         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
         .padding([.top, .bottom], 10)

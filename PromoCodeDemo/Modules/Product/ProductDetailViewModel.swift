@@ -22,7 +22,7 @@ public class ProductDetailViewModel: ProductDetailViewModeling {
     init(product: ProductUIModel) {
         self.product = product
     }
-    func purchase() {
+    public func purchase() {
         self.asyncThrowVM.isLoading.on()
         Task { [weak self] in
             guard let welf = self else { return }
@@ -48,15 +48,21 @@ public class ProductDetailViewModel: ProductDetailViewModeling {
         }
     }
     
-    func applyPromo(promo: String) {
+    public func applyPromo() {
         self.asyncThrowVM.isLoading.on()
         Task { [weak self] in
             guard let welf = self else { return }
             do {
-                try await welf.purchaseManager.purchase(with: promo)
-                DispatchQueue.main.async {
-                    welf.asyncThrowVM.isLoading.off()
-                    welf.asyncThrowVM.error = ErrorType.productNotFound
+                if let prod = try await welf.purchaseManager.products().filter({ $0.id == product.id }).first {
+                    try await welf.purchaseManager.applyPromo(product: prod)
+                    DispatchQueue.main.async {
+                        welf.asyncThrowVM.isLoading.off()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        welf.asyncThrowVM.isLoading.off()
+                        welf.asyncThrowVM.error = ErrorType.productNotFound
+                    }
                 }
             }
             catch let error {

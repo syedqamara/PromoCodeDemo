@@ -7,17 +7,20 @@
 
 import Foundation
 import StoreKit
+import Dependencies
 
 class PurchaseManager: NSObject, PurchaseManaging {
     enum PurchaseError: Error {
-    case userCancelled, duplicatePurchase
+    case userCancelled, duplicatePurchase, failedWithNoReason
     }
     @Published var availableProducts: [SubscriptionProducts] = [ .weekly, .monthly, .yearly ]
     @Published var premium: PremiumType = .free
     private var lastFetchProducts: [Product]? = nil
     @Published public var isRequestingAlready: Bool = false
     private var updates: Task<Void, Never>? = nil
-
+    
+    @Dependency(\.productsAsyncThrow) private var productsAsyncThrow
+    
     override init() {
         super.init()
         self.updates = observeTransactionUpdates()
@@ -130,15 +133,36 @@ class PurchaseManager: NSObject, PurchaseManaging {
             }
         }
     }
-    func purchase(with promo: String) async throws {
+    func applyPromo(product: Product) async throws {
+        
         SKPaymentQueue.default().presentCodeRedemptionSheet()
+        
+        
     }
 }
 
 extension PurchaseManager: SKPaymentTransactionObserver {
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        // Update Transaction to Backend
-    }
+            for transaction in transactions {
+                switch transaction.transactionState {
+                case .purchased, .restored:
+                    Task {
+                        await self.updatePurchasedProducts()
+                    }
+                case .failed:
+                    // Handle failed transactions
+                    // ...
+                    productsAsyncThrow.error = .custom(PurchaseError.failedWithNoReason)
+                case .purchasing:
+                    break
+                case .deferred:
+                    productsAsyncThrow.error = .custom(PurchaseError.userCancelled)
+                    break
+                @unknown default:
+                    break
+                }
+            }
+        }
     func paymentQueue(_ queue: SKPaymentQueue, shouldAddStorePayment payment: SKPayment, for product: SKProduct) -> Bool {
         return true
     }
