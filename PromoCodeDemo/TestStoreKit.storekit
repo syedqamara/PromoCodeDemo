@@ -85,7 +85,7 @@
           ],
           "displayPrice" : "4",
           "familyShareable" : false,
-          "groupNumber" : 1,
+          "groupNumber" : 2,
           "internalID" : "AD2CD7F2",
           "introductoryOffer" : null,
           "localizations" : [
@@ -127,9 +127,13 @@
           ],
           "displayPrice" : "0.99",
           "familyShareable" : false,
-          "groupNumber" : 1,
+          "groupNumber" : 3,
           "internalID" : "50482B09",
-          "introductoryOffer" : null,
+          "introductoryOffer" : {
+            "internalID" : "680E9AC9",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
           "localizations" : [
             {
               "description" : "",
@@ -138,7 +142,7 @@
             }
           ],
           "productID" : "product_weekly",
-          "recurringSubscriptionPeriod" : "P1M",
+          "recurringSubscriptionPeriod" : "P1W",
           "referenceName" : "Basic Subscription",
           "subscriptionGroupID" : "D1B25862",
           "type" : "RecurringSubscription"

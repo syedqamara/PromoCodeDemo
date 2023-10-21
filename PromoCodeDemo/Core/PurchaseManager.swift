@@ -8,6 +8,7 @@
 import Foundation
 import StoreKit
 import Dependencies
+import SwiftUI
 
 class PurchaseManager: NSObject, PurchaseManaging {
     enum PurchaseError: Error {
@@ -50,10 +51,13 @@ class PurchaseManager: NSObject, PurchaseManaging {
         }
         isRequestingAlready.on()
         var subscriptions: [PremiumType] = []
-        for await result in Transaction.currentEntitlements {
+        let entitlements = Transaction.currentEntitlements
+        for await result in entitlements {
             guard case .verified(let transaction) = result else {
                 continue
             }
+            let productID = transaction.productID
+            print("Purchased Product ID \(productID)")
             guard let product = SubscriptionProducts(rawValue: transaction.productID) else {
                 continue
             }
@@ -134,9 +138,24 @@ class PurchaseManager: NSObject, PurchaseManaging {
         }
     }
     func applyPromo(product: Product) async throws {
-        
         SKPaymentQueue.default().presentCodeRedemptionSheet()
-        
+        return
+        let rawScenes = await UIApplication.shared.connectedScenes
+        let scenes = rawScenes.compactMap({ scene in
+            return scene as? UIWindowScene
+        })
+        var scene: UIWindowScene?
+        for sc in scenes {
+            let status = await sc.activationState
+            if status == .foregroundActive {
+                scene = sc
+            }
+        }
+        if let scene {
+            try await StoreKit.AppStore.presentOfferCodeRedeemSheet(in: scene)
+        } else {
+            SKPaymentQueue.default().presentCodeRedemptionSheet()
+        }
     }
 }
 
