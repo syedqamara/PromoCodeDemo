@@ -15,25 +15,26 @@ struct PromoCodeDemoApp: App {
     @Dependency(\.purchaseManager) private var purchaseManager
     
     init() {
-        
+        AhmedTask.main()
     }
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                AnyView(
-                    factory.makeView(
-                        input: .features(
-                            features: [
-                                FreeFeature(),
-                                BasicFeature(),
-                                GoldenFeature(),
-                                PlatinumFeature()
-                            ]
-                        )
-                    )
-                )
-            }
+            ContentView(factory: AhmedViewV2Factory())
+//            NavigationStack {
+//                AnyView(
+//                    factory.makeView(
+//                        input: .features(
+//                            features: [
+//                                FreeFeature(),
+//                                BasicFeature(),
+//                                GoldenFeature(),
+//                                PlatinumFeature()
+//                            ]
+//                        )
+//                    )
+//                )
+//            }
         }
     }
 }

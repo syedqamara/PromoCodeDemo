@@ -40,6 +40,7 @@
 		184630252AE0D43200DC65FC /* FeatureUnlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184630242AE0D43200DC65FC /* FeatureUnlockView.swift */; };
 		184630272AE0D52F00DC65FC /* FeatureListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184630262AE0D52F00DC65FC /* FeatureListViewModel.swift */; };
 		184630292AE0DD6400DC65FC /* Features.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184630282AE0DD6400DC65FC /* Features.swift */; };
+		18F0D62B2AE463130056085B /* AhmedTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F0D62A2AE463130056085B /* AhmedTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,8 @@
 		184630242AE0D43200DC65FC /* FeatureUnlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureUnlockView.swift; sourceTree = "<group>"; };
 		184630262AE0D52F00DC65FC /* FeatureListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureListViewModel.swift; sourceTree = "<group>"; };
 		184630282AE0DD6400DC65FC /* Features.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features.swift; sourceTree = "<group>"; };
+		18F0D62A2AE463130056085B /* AhmedTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AhmedTest.swift; sourceTree = "<group>"; };
+		18F0D62C2AE464390056085B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +151,9 @@
 		18462FA92AE0543D00DC65FC /* PromoCodeDemo */ = {
 			isa = PBXGroup;
 			children = (
+				18F0D62C2AE464390056085B /* Info.plist */,
 				18462FAA2AE0543D00DC65FC /* PromoCodeDemoApp.swift */,
+				18F0D62A2AE463130056085B /* AhmedTest.swift */,
 				18462FAC2AE0543D00DC65FC /* ContentView.swift */,
 				184630182AE08D8400DC65FC /* TestStoreKit.storekit */,
 				1846300E2AE060C700DC65FC /* Helpers */,
@@ -441,6 +446,7 @@
 				184630002AE05B9700DC65FC /* ProductListViewModel.swift in Sources */,
 				18462FEF2AE054EF00DC65FC /* Architecture.swift in Sources */,
 				18462FEC2AE054EF00DC65FC /* Factory+StockExchange.swift in Sources */,
+				18F0D62B2AE463130056085B /* AhmedTest.swift in Sources */,
 				1846300D2AE05DC100DC65FC /* FeatureListView.swift in Sources */,
 				184630102AE060CF00DC65FC /* LoadingView.swift in Sources */,
 				184630082AE05D9E00DC65FC /* ProductDetailViewModel.swift in Sources */,
@@ -624,6 +630,7 @@
 				DEVELOPMENT_TEAM = MQTNS7XP22;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PromoCodeDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -653,6 +660,7 @@
 				DEVELOPMENT_TEAM = MQTNS7XP22;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PromoCodeDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
