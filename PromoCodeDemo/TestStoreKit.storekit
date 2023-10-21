@@ -4,51 +4,7 @@
 
   ],
   "products" : [
-    {
-      "displayPrice" : "48",
-      "familyShareable" : false,
-      "internalID" : "E865CA98",
-      "localizations" : [
-        {
-          "description" : "",
-          "displayName" : "",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "com.product_yearly",
-      "referenceName" : "Platinum",
-      "type" : "NonConsumable"
-    },
-    {
-      "displayPrice" : "4",
-      "familyShareable" : false,
-      "internalID" : "5AC842D4",
-      "localizations" : [
-        {
-          "description" : "",
-          "displayName" : "",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "product_monthlys",
-      "referenceName" : "Golden",
-      "type" : "NonConsumable"
-    },
-    {
-      "displayPrice" : "0.99",
-      "familyShareable" : false,
-      "internalID" : "F7991220",
-      "localizations" : [
-        {
-          "description" : "",
-          "displayName" : "",
-          "locale" : "en_US"
-        }
-      ],
-      "productID" : "product_weeklys",
-      "referenceName" : "Basic",
-      "type" : "NonConsumable"
-    }
+
   ],
   "settings" : {
 
@@ -68,45 +24,21 @@
               "offerID" : "PPUFree",
               "paymentMode" : "free",
               "referenceName" : "Platinum Promotional Unlock",
-              "subscriptionPeriod" : "P3D"
+              "subscriptionPeriod" : "P1Y"
             }
           ],
           "codeOffers" : [
-            {
-              "eligibility" : [
-                "new",
-                "existing",
-                "expired"
-              ],
-              "internalID" : "C31E507A",
-              "isStackable" : true,
-              "paymentMode" : "free",
-              "referenceName" : "PlatinumOffer",
-              "subscriptionPeriod" : "P3D"
-            },
-            {
-              "eligibility" : [
-                "existing",
-                "expired",
-                "new"
-              ],
-              "internalID" : "CF5BC3F2",
-              "isStackable" : true,
-              "paymentMode" : "free",
-              "referenceName" : "GoldenOffer",
-              "subscriptionPeriod" : "P3D"
-            },
             {
               "eligibility" : [
                 "expired",
                 "new",
                 "existing"
               ],
-              "internalID" : "638F7A2A",
+              "internalID" : "60ED49E7",
               "isStackable" : true,
               "paymentMode" : "free",
-              "referenceName" : "BasicOffer",
-              "subscriptionPeriod" : "P3D"
+              "referenceName" : "Platiunum Free",
+              "subscriptionPeriod" : "P1Y"
             }
           ],
           "displayPrice" : "48",
@@ -134,11 +66,22 @@
               "offerID" : "GPUFree",
               "paymentMode" : "free",
               "referenceName" : "Golden Promotional Unlock",
-              "subscriptionPeriod" : "P3D"
+              "subscriptionPeriod" : "P1M"
             }
           ],
           "codeOffers" : [
-
+            {
+              "eligibility" : [
+                "new",
+                "expired",
+                "existing"
+              ],
+              "internalID" : "5DFE6298",
+              "isStackable" : true,
+              "paymentMode" : "free",
+              "referenceName" : "Golden Free",
+              "subscriptionPeriod" : "P1M"
+            }
           ],
           "displayPrice" : "4",
           "familyShareable" : false,
@@ -165,11 +108,22 @@
               "offerID" : "BPUFree",
               "paymentMode" : "free",
               "referenceName" : "Basic Promotional Unlock",
-              "subscriptionPeriod" : "P3D"
+              "subscriptionPeriod" : "P1W"
             }
           ],
           "codeOffers" : [
-
+            {
+              "eligibility" : [
+                "new",
+                "existing",
+                "expired"
+              ],
+              "internalID" : "AAC10D7A",
+              "isStackable" : true,
+              "paymentMode" : "free",
+              "referenceName" : "Basic Free",
+              "subscriptionPeriod" : "P1W"
+            }
           ],
           "displayPrice" : "0.99",
           "familyShareable" : false,

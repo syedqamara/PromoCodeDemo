@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Dependencies
+import StoreKit
 
 @main
 struct PromoCodeDemoApp: App {

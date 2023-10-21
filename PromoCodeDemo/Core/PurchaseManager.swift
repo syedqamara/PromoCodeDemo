@@ -137,12 +137,12 @@ class PurchaseManager: NSObject, PurchaseManaging {
         
         SKPaymentQueue.default().presentCodeRedemptionSheet()
         
-        
     }
 }
 
 extension PurchaseManager: SKPaymentTransactionObserver {
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        
             for transaction in transactions {
                 switch transaction.transactionState {
                 case .purchased, .restored:
